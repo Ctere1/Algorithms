@@ -1,8 +1,6 @@
 #include <iostream>
 #include <chrono>
 
-//Cemil TAN 192920271
-
 using namespace std;
 
 int o_n_squared_alg(int arr[], int size)
@@ -32,7 +30,7 @@ int o_n_squared_alg(int arr[], int size)
 	}
 	
 	return total;
-	// O(n)^2 zamanda çalışan algoritma.
+	// Algorithm running in O(n)^2 time.
 }
 int o_n_alg(int arr[], int size)
 {
@@ -57,7 +55,7 @@ int o_n_alg(int arr[], int size)
 		}
 	}
 	return total;
-	// O(n) zamanda çalışan algoritma
+	// algorithm running in O(n) time
 }
 int main()
 {
@@ -71,7 +69,7 @@ int main()
 	int ans_n_squared;
 	int ans_n;
 	
-	for (int i = 0; i < size; i++) // input.txt dosyasından alınız.
+	for (int i = 0; i < size; i++) // Get it from the input.txt file.
 		cin>>array[i];
 
 	auto t1 = high_resolution_clock::now();
@@ -85,11 +83,11 @@ int main()
 	auto time_o_n_squared = duration_cast<milliseconds>(t2 - t1);
 	auto time_o_n = duration_cast<milliseconds>(t4 - t3);
 	
-	cout<<"O(n)kare sonucu:"<<ans_n_squared<<endl;
-	cout<<"O(n) sonucu:"<<ans_n<<endl;
-	if(time_o_n_squared.count()>1000*time_o_n.count()) // 1 milyon elemanlı bir dizi için O(n)^2 algoritma, O(n) algoritmadan çok daha fazla zaman alacaktır. 
-		cout<<"O(n) cok daha hizli calisiyor.";
+	cout<<"O(n'2) result:"<<ans_n_squared<<endl;
+	cout<<"O(n) result:"<<ans_n<<endl;
+	if(time_o_n_squared.count()>1000*time_o_n.count()) // For an array with 1 million elements, the O(n)^2 algorithm will take much more time than the O(n) algorithm.
+		cout<<"O(n) works much faster.";
 	else
-		cout<<"o(n) yeterince hizli calismiyor.";
+		cout<<"o(n) does not work fast enough";
 
 }
