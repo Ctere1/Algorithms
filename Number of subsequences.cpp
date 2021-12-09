@@ -19,16 +19,20 @@ int o_n_squared_alg(int arr[], int size)
 	3,4,9,7
 	*/
 	int total = 0;
-	for(int i = 0; i < size; i++){
-		if(arr[i] == 3){
-			for(int j = i + 1; j < size; j++){
-				if(arr[j] == 7){
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == 3)
+		{
+			for (int j = i + 1; j < size; j++)
+			{
+				if (arr[j] == 7)
+				{
 					total++;
 				}
 			}
-		}	
+		}
 	}
-	
+
 	return total;
 	// Algorithm running in O(n)^2 time.
 }
@@ -43,15 +47,20 @@ int o_n_alg(int arr[], int size)
 	int three_count = 0;
 	int seven_count = 0;
 
-	for(int i = 0; i < size; i++){
-		if(arr[i] == 3){
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == 3)
+		{
 			three_count++;
-		}else if(arr[i] == 7){
-			if(three_count != 0){
+		}
+		else if (arr[i] == 7)
+		{
+			if (three_count != 0)
+			{
 				seven_count++;
 				total += three_count * seven_count;
 			}
-			seven_count = 0;	
+			seven_count = 0;
 		}
 	}
 	return total;
@@ -59,35 +68,34 @@ int o_n_alg(int arr[], int size)
 }
 int main()
 {
+	using std::chrono::duration;
+	using std::chrono::duration_cast;
 	using std::chrono::high_resolution_clock;
-    using std::chrono::duration_cast;
-    using std::chrono::duration;
-    using std::chrono::milliseconds;
-	
+	using std::chrono::milliseconds;
+
 	int size = 1000000;
-	int* array = new int[size];
+	int *array = new int[size];
 	int ans_n_squared;
 	int ans_n;
-	
+
 	for (int i = 0; i < size; i++) // Get it from the input.txt file.
-		cin>>array[i];
+		cin >> array[i];
 
 	auto t1 = high_resolution_clock::now();
-	ans_n_squared=o_n_squared_alg(array, size);
+	ans_n_squared = o_n_squared_alg(array, size);
 	auto t2 = high_resolution_clock::now();
 
 	auto t3 = high_resolution_clock::now();
-	ans_n=o_n_alg(array, size);
+	ans_n = o_n_alg(array, size);
 	auto t4 = high_resolution_clock::now();
-	
+
 	auto time_o_n_squared = duration_cast<milliseconds>(t2 - t1);
 	auto time_o_n = duration_cast<milliseconds>(t4 - t3);
-	
-	cout<<"O(n'2) result:"<<ans_n_squared<<endl;
-	cout<<"O(n) result:"<<ans_n<<endl;
-	if(time_o_n_squared.count()>1000*time_o_n.count()) // For an array with 1 million elements, the O(n)^2 algorithm will take much more time than the O(n) algorithm.
-		cout<<"O(n) works much faster.";
-	else
-		cout<<"o(n) does not work fast enough";
 
+	cout << "O(n'2) result:" << ans_n_squared << endl;
+	cout << "O(n) result:" << ans_n << endl;
+	if (time_o_n_squared.count() > 1000 * time_o_n.count()) // For an array with 1 million elements, the O(n)^2 algorithm will take much more time than the O(n) algorithm.
+		cout << "O(n) works much faster.";
+	else
+		cout << "o(n) does not work fast enough";
 }
